@@ -1,9 +1,13 @@
 FROM ubuntu:22.04
 
-RUN apt-get update && apt-get install -y 
+# Install Python and pip
+RUN apt-get update && apt-get install -y \
+    python3 \
+    python3-pip \
+    python3-venv 
 
-WORKDIR /infection
+WORKDIR /lab
 
-COPY ./files .
+COPY . .
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT ["/bin/bash"]
