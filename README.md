@@ -1,85 +1,50 @@
+# STOCKHOLM
+## Overview
+ - Stockholm is a simulation tool that demonstrates how ransomware like WannaCry targets and encrypts files.
+ - It only operates within a designated folder ($HOME/infection) to ensure safety.
 
-Overview
-Stockholm is a simulation tool that demonstrates how ransomware like WannaCry targets and encrypts files.
-It only operates within a designated folder ($HOME/infection) to ensure safety.
-IMPORTANT: This program is for educational purposes only. DO NOT use it maliciously.
-Features
+## Features
+ - Encrypts files with extensions targeted by WannaCry.
+ - Adds .ft extension to encrypted files.
+ - Decrypts files with the correct key.
+ - Command-line options for various functions.
 
-Encrypts files with extensions targeted by WannaCry
-Adds .ft extension to encrypted files
-Decrypts files with the correct key
-Secure encryption using AES-256-GCM
-Command-line options for various functions
+## Requirements
+ - Python 3.6 or higher
+ - cryptography library
 
-Requirements
-
-Python 3.6 or higher
-cryptography library
-
-Installation
-
+## Installation
 Clone this repository:
 ```bash
-git clone https://github.com/yourusername/stockholm.git
+git clone ... stockholm
 cd stockholm
 ```
 
-Install dependencies:
+### Build and Run the Docker image:
 ```bash
-pip install -r requirements.txt
+docker build -t stockholm .
+docker run -it stockholm
 ```
 
-Make the script executable:
+### Install required dependencies:
 ```bash
-chmod +x stockholm.py
+make setup
+```
+### Activate the virtual env
+```bash
+source venv/bin/activate
 ```
 
-Usage
-Basic usage:
-
+### Show all the available Features
 ```bash
-./stockholm.py [options]
+make rules
 ```
 
-Options:
-
+### Options:
+```bash
 -h, --help: Show help message and exit
 -v, --version: Show program version and exit
 -r, --reverse KEY: Decrypt files using the provided KEY
 -s, --silent: Run without displaying output
-
-Examples:
-
-Encrypt files in the infection folder:
-```bash
-./stockholm.py
+-p, --password: Encrypt files using the provided KEY
 ```
-
-Encrypt files without showing output:
-```bash
-./stockholm.py --silent
-```
-
-ecrypt files using a key:
-```bash
-./stockholm.py --reverse YOUR_ENCRYPTION_KEY
-```
-
-Show program version:
-```bash
-./stockholm.py --version
-```
-
-How It Works
-
-The program only operates on files in the $HOME/infection directory
-It targets files with extensions that were affected by WannaCry
-Files are encrypted using AES-256-GCM with a secure key
-Encrypted files are renamed with an additional .ft extension
-The decryption process restores files to their original state when provided with the correct key
-
-Safety Features
-
-Only operates in the designated infection folder
-Will not encrypt already encrypted files
-Generates and displays a secure key for later decryption
